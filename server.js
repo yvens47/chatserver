@@ -7,13 +7,13 @@ const io = require("socket.io")(http, {
   }
 });
 
-app.get("/", function(req, res) {
-  res.sendFile(__dirname + "/index.html");
+app.get("/", function (req, res) {
+  res.json({ data: "chat app serve" });
 });
 
-io.on("connection", function(socket) {
+io.on("connection", function (socket) {
   console.log("a user is connected");
-  socket.on("join", function(data) {
+  socket.on("join", function (data) {
     console.log(data);
     socket.emit("messages", "Hello rom server");
   });
